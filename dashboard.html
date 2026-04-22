@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ozair Mahmudee | Dashboards</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: #0a0a0a;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 20px;
+      right: 40px;
+      z-index: 1000;
+    }
+
+    .nav-right a {
+      margin-left: 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.25s ease;
+    }
+
+    .nav-right a:hover {
+      opacity: 0.7;
+    }
+
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
+      background: radial-gradient(circle at center, rgba(0,94,255,0.12), transparent 45%), #000;
+    }
+
+    .hero-content {
+      max-width: 840px;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px 0;
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0 auto;
+      color: #b8b8b8;
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 700px;
+    }
+
+    .dashboard-section {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+
+    .section-heading {
+      margin: 0 0 28px 0;
+      font-size: 1.7rem;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .dashboard-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid #1e1e1e;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-8px);
+      border-color: #00bcd4;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.38);
+    }
+
+    .dashboard-preview {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, rgba(0,94,255,0.18), rgba(255,255,255,0.04));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .dashboard-preview img {
+      width: 60%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .dashboard-preview img:hover {
+      transform: scale(1.05);
+    }
+
+    .dashboard-placeholder {
+      padding: 24px;
+      text-align: center;
+      color: #a6a6a6;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .dashboard-card-content {
+      padding: 22px;
+    }
+
+    .dashboard-card h3 {
+      margin: 0 0 12px 0;
+      font-size: 1.2rem;
+    }
+
+    .dashboard-card p {
+      margin: 0 0 16px 0;
+      color: #bbbbbb;
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #151515;
+      border: 1px solid #262626;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #00bcd4;
+    }
+
+    .dashboard-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      padding: 10px 18px;
+      background: transparent;
+      border: 1px solid #00bcd4;
+      color: #00bcd4;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-size: 14px;
+    }
+
+    .action-btn:hover {
+      background: #00bcd4;
+      color: black;
+    }
+
+    .notes {
+      margin-top: 36px;
+      padding: 20px 22px;
+      border: 1px solid #1d1d1d;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+      color: #b9b9b9;
+      line-height: 1.7;
+    }
+
+    .notes strong {
+      color: white;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0, 0, 0, 0.96);
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .modal-content {
+      max-width: min(1100px, 88vw);
+      max-height: 82vh;
+      width: auto;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.45);
+    }
+
+    .close {
+      position: absolute;
+      top: 26px;
+      right: 34px;
+      font-size: 44px;
+      color: white;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      font-size: 42px;
+      cursor: pointer;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .modal-arrow:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .modal-arrow.left { left: 28px; }
+    .modal-arrow.right { right: 28px; }
+
+    .modal-caption {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #d8d8d8;
+      text-align: center;
+      font-size: 0.95rem;
+      max-width: 85vw;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        top: 16px;
+        right: 20px;
+      }
+
+      .nav-right a {
+        margin-left: 16px;
+        font-size: 14px;
+      }
+
+      .hero {
+        min-height: 52vh;
+      }
+
+      .dashboard-preview img {
+        width: 78%;
+      }
+
+      .modal-arrow {
+        width: 52px;
+        height: 52px;
+        font-size: 32px;
+      }
+
+      .modal-arrow.left { left: 10px; }
+      .modal-arrow.right { right: 10px; }
+
+      .close {
+        top: 16px;
+        right: 18px;
+        font-size: 36px;
+      }
+
+      .modal-content {
+        max-width: 92vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-right">
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="projects.html">Projects</a>
+      <a href="dashboard.html">Dashboards</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Dashboard Showcase</h1>
+      <p>
+        A curated collection of dashboards built to turn business performance, customer behaviour,
+        and operational data into clear, actionable insight. Click each dashboard to open the full screenshot.
+      </p>
+    </div>
+  </section>
+
+  <section class="dashboard-section">
+    <h2 class="section-heading">Featured Dashboards</h2>
+
+    <div class="dashboard-grid">
+      <article class="dashboard-card">
+        <div class="dashboard-preview">
+          <img src="images/Prism Business Performance and Revenue Trend.png" alt="Prism KPI Dashboard" onclick="openModal(0)">
+        </div>
+        <div class="dashboard-card-content">
+          <h3>Prism KPI Dashboard &amp; Revenue Analysis</h3>
+          <p>
+          This dashboard provides an overview of Prism’s overall business performance, 
+          combining key KPIs with trends in customer behaviour and revenue. While total revenue (£8.7M) 
+          and gross profit margin (47.7%) indicate strong financial performance, the low conversion rate (0.59%) and 
+          declining retention trend highlight opportunities to improve customer acquisition and loyalty. Revenue shows 
+           fluctuations throughout the year but peaks towards the end of 2021, suggesting seasonal growth and stronger performance in later months.
+          </p>
+          <div class="tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">KPI Dashboard</span>
+            <span class="tag">Revenue Analysis</span>
+            <span class="tag">Retention</span>
+          </div>
+          <div class="dashboard-actions">
+            <button class="action-btn" onclick="openModal(0)">View Dashboard</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="dashboard-card">
+        <div class="dashboard-preview">
+          <img 
+          src="images\Breakdown of most profitable brand and gender.png" 
+          alt="Profitability & Revenue Performance Overview"
+          onclick="openModal(1)"
+          >     
+            </div>
+        <div class="dashboard-card-content">
+          <h3>Profitability & Revenue Performance Overview</h3>
+          <p>
+            This dashboard highlights key revenue and profitability trends across brands, genders, 
+            and time periods. It shows that women’s products consistently generate higher profits for top brands like Tommy Hilfiger and U.S. Polo Assn., 
+            while overall revenue demonstrates strong growth—peaking in Q4. Year-on-year performance also improved, with 2021 outperforming 2020, 
+            indicating positive business momentum and seasonal strength in later quarters.
+          </p>
+          <div class="tags">
+            <span class="tag">Segmentation</span>
+            <span class="tag">Customer Insight</span>
+            <span class="tag">Analytics</span>
+            <span class="tag">Revenue</span>
+          </div>
+          <div class="dashboard-actions">
+            <button class="action-btn" onclick="openModal(1)">View Dashboard</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="dashboard-card">
+        <div class="dashboard-preview">
+          <div class="dashboard-placeholder">
+            Add another dashboard screenshot here.
+          </div>
+        </div>
+        <div class="dashboard-card-content">
+          <h3>Sales Performance Dashboard</h3>
+          <p>
+            Space for a dashboard focused on revenue trends, top-performing products,
+            conversion movement, and commercial reporting.
+          </p>
+          <div class="tags">
+            <span class="tag">Sales</span>
+            <span class="tag">Performance</span>
+            <span class="tag">Reporting</span>
+          </div>
+          <div class="dashboard-actions">
+            <button class="action-btn" onclick="openModal(2)">View Dashboard</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="notes">
+      <strong>How to add screenshots:</strong> place your dashboard images inside an <code>images</code>
+      folder and update the <code>dashboardImages</code> array at the bottom of this page.
+      You can also replace each grey preview area with an actual image preview by swapping the placeholder
+      block for an <code>&lt;img src="images/your-file.png" alt="Dashboard preview"&gt;</code> element.
+    </div>
+  </section>
+
+  <div id="dashboardModal" class="modal" onclick="if(event.target===this) closeModal()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <button class="modal-arrow left" onclick="changeSlide(-1)">❮</button>
+    <img class="modal-content" id="modalImage" alt="Dashboard image">
+    <button class="modal-arrow right" onclick="changeSlide(1)">❯</button>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+
+const dashboardImages = [
+  {
+    src: "images/Prism Business Performance and Revenue Trend.png",
+    caption: "Prism KPI Dashboard & Revenue Analysis"
+  },
+  {
+    src: "images/Breakdown of most profitable brand and gender.png",
+    caption: "Product Returns Dashboard & Return Trend Analysis"
+  },
+  {
+    src: "images/Sales Performance Dashboard Screenshot.png",
+    caption: "Sales Performance Dashboard"
+  }
+];
+
+    function openModal(index = 0) {
+      currentSlide = index;
+      document.getElementById("dashboardModal").style.display = "flex";
+      showSlide(currentSlide);
+    }
+
+    function closeModal() {
+      document.getElementById("dashboardModal").style.display = "none";
+    }
+
+    function changeSlide(direction) {
+      currentSlide += direction;
+
+      if (currentSlide < 0) currentSlide = dashboardImages.length - 1;
+      if (currentSlide >= dashboardImages.length) currentSlide = 0;
+
+      showSlide(currentSlide);
+    }
+
+    function showSlide(index) {
+      const modalImage = document.getElementById("modalImage");
+      const modalCaption = document.getElementById("modalCaption");
+      modalImage.src = dashboardImages[index].src;
+      modalImage.alt = dashboardImages[index].caption;
+      modalCaption.textContent = dashboardImages[index].caption;
+    }
+
+    document.addEventListener("keydown", function (e) {
+      const modal = document.getElementById("dashboardModal");
+      if (modal.style.display !== "flex") return;
+
+      if (e.key === "ArrowLeft") changeSlide(-1);
+      if (e.key === "ArrowRight") changeSlide(1);
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+</body>
+</html>

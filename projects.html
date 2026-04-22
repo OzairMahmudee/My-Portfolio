@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ozair Mahmudee | Projects</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 40px;
+      background: transparent;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 14px;
+    }
+
+    .hero {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .projects-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px 90px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #111;
+      padding: 25px;
+      border-radius: 12px;
+      transition: 0.3s ease;
+      border: 1px solid #1a1a1a;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: #00bcd4;
+    }
+
+    .project-card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .project-card p {
+      color: #bbb;
+      font-size: 14px;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .tags {
+      margin-bottom: 15px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #1f1f1f;
+      padding: 5px 10px;
+      margin-right: 5px;
+      margin-bottom: 6px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #00bcd4;
+    }
+
+    .project-card a {
+      text-decoration: none;
+      color: #00bcd4;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-right">
+    <a href="index.html">Home</a>
+    <a href="cv.html">CV</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="projects.html">Projects</a>
+    <a href="dashboard.html">Dashboards</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>My Projects</h1>
+  <p>
+    A collection of data-driven projects focused on transforming raw data into actionable insights,
+    improving decision-making, and delivering measurable business impact.
+  </p>
+</section>
+
+<section class="projects-container">
+  <div class="project-card featured-project">
+    <h3>Orbital Health AI Chatbot</h3>
+    <p>
+      Developed an AI-powered healthcare chatbot designed to provide real-time health insights 
+      and improve accessibility to medical guidance. The system supports user interaction 
+      through structured queries, delivering personalised recommendations based on user input.
+    </p>
+
+    <div class="tags">
+      <span class="tag">Azure AI</span>
+      <span class="tag">Chatbot</span>
+      <span class="tag">Data Analysis</span>
+      <span class="tag">UX Design</span>
+      <span class="tag">Web Development</span>
+    </div>
+
+    <p class="impact">
+      Impact: Delivered a 24/7 health assistant capable of guiding users through symptom-based 
+      interactions and improving decision-making accessibility.
+    </p>
+
+    <button class="view-btn" onclick="openModal(0)">View Project</button>
+  </div>
+
+  <div class="project-card">
+    <h3>KPI Dashboard for Revenue Optimisation & Retention Strategy</h3>
+    <p>
+      Built a KPI dashboard analysing Prism’s 2020–2021 performance, identifying key issues such as low conversion 
+      (0.59%) and high return rates (26.61%). Delivered actionable recommendations including UX improvements, 
+      ad optimisation, and retention strategies to drive revenue growth and customer engagement.
+    </p>
+    <div class="tags">
+      <span class="tag">SQL</span>
+      <span class="tag">Power BI</span>
+      <span class="tag">Data Analysis</span>
+    </div>
+    <a href="dashboard.html">View Dashboard →</a>
+  </div>
+
+  <div class="project-card">
+    <h3>Pneumonia Detection (Deep Learning)</h3>
+    <p>
+      Built a Convolutional Neural Network (CNN) using TensorFlow and Keras to classify chest X-ray images as pneumonia or normal.
+      Achieved 98% training accuracy and evaluated model performance on unseen medical data.
+    </p>
+    
+    <div class="tags">
+      <span class="tag">TensorFlow</span>
+      <span class="tag">Keras</span>
+      <span class="tag">Computer Vision</span>
+      <span class="tag">Deep Learning</span>
+    </div>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+      <button class="view-btn" onclick="openPneumoniaModal()">
+        View Project
+      </button>
+
+      <a href="Pneumonia-project-page.html" class="view-btn" style="text-decoration: none;">
+        Check Project -
+      </a>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <h3>Fraud Detection Analysis</h3>
+    <p>
+      Conducted exploratory data analysis to detect anomalies and identify potential fraudulent transactions,
+      improving risk management.
+    </p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">EDA</span>
+      <span class="tag">Data Cleaning</span>
+    </div>
+    <a href="#">View Project →</a>
+  </div>
+
+  <div class="project-card">
+    <h3>CRM Data Optimisation</h3>
+    <p>
+      Improved CRM data quality and reporting processes, enabling better customer insights
+      and operational efficiency.
+    </p>
+    <div class="tags">
+      <span class="tag">Salesforce</span>
+      <span class="tag">CRM</span>
+      <span class="tag">Process Improvement</span>
+    </div>
+    <a href="#">View Project →</a>
+  </div>
+</section>
+
+<div id="projectModal" class="modal" onclick="if(event.target===this) closeModal()">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <button class="modal-arrow left" onclick="changeSlide(-1)">❮</button>
+  <img class="modal-content" id="modalImage" alt="Project image">
+  <button class="modal-arrow right" onclick="changeSlide(1)">❯</button>
+</div>
+
+<script>
+const orbitalImages = [
+  "images/AI Healthcare Chatbot asking additional questiions.jpg",
+  "images/AI Healthcare Chatbot asking for age.jpg",
+  "images/AI Healthcare Chatbot Full Page Design.jpg",
+  "images/AI Healthcare Chatbot giving a summary.jpg",
+  "images/AI Healthcare Chatbot in use.jpg",
+  "images/AI Healthcare Chatbot Project.jpg",
+  "images/Detailed Information on the webpage.jpg",
+  "images/Footer Design of the page.jpg"
+];
+
+let images = orbitalImages;
+let currentSlide = 0;
+
+// Orbital project (multiple images)
+function openModal(index = 0) {
+  images = orbitalImages;
+  currentSlide = index;
+  document.getElementById("projectModal").style.display = "flex";
+  showSlide(currentSlide);
+}
+
+// Pneumonia project (single image)
+function openPneumoniaModal() {
+  images = ["images/cover image for project.png"]; // your cover image
+  currentSlide = 0;
+  document.getElementById("projectModal").style.display = "flex";
+  showSlide(currentSlide);
+}
+
+function closeModal() {
+  document.getElementById("projectModal").style.display = "none";
+}
+
+function changeSlide(direction) {
+  currentSlide += direction;
+
+  if (currentSlide < 0) currentSlide = images.length - 1;
+  if (currentSlide >= images.length) currentSlide = 0;
+
+  showSlide(currentSlide);
+}
+
+function showSlide(index) {
+  document.getElementById("modalImage").src = images[index];
+
+  // Hide arrows if only 1 image
+  const arrows = document.querySelectorAll(".modal-arrow");
+  if (images.length === 1) {
+    arrows.forEach(a => a.style.display = "none");
+  } else {
+    arrows.forEach(a => a.style.display = "block");
+  }
+}
+
+// Keyboard controls
+document.addEventListener("keydown", function(e) {
+  const modal = document.getElementById("projectModal");
+  if (modal.style.display !== "flex") return;
+
+  if (e.key === "ArrowLeft") changeSlide(-1);
+  if (e.key === "ArrowRight") changeSlide(1);
+  if (e.key === "Escape") closeModal();
+});
+
+
+</script>
+
+
+</body>
+</html>
