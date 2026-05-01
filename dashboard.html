@@ -310,11 +310,12 @@
       <a href="index.html">Home</a>
       <a href="cv.html">CV</a>
       <a href="projects.html">Projects</a>
-      <a href="dashboard.html">Dashboards</a>
+      <a href="day.html">Dashboards</a>
       <a href="index.html#contact">Contact</a>
     </div>
   </nav>
 
+  
   <section class="hero">
     <div class="hero-content">
       <h1>Dashboard Showcase</h1>
@@ -380,37 +381,69 @@
             <button class="action-btn" onclick="openModal(1)">View Dashboard</button>
           </div>
         </div>
-      </article>
+      </article>      
 
-      <article class="dashboard-card">
-        <div class="dashboard-preview">
-          <div class="dashboard-placeholder">
-            Add another dashboard screenshot here.
-          </div>
-        </div>
-        <div class="dashboard-card-content">
-          <h3>Sales Performance Dashboard</h3>
-          <p>
-            Space for a dashboard focused on revenue trends, top-performing products,
-            conversion movement, and commercial reporting.
-          </p>
-          <div class="tags">
-            <span class="tag">Sales</span>
-            <span class="tag">Performance</span>
-            <span class="tag">Reporting</span>
-          </div>
-          <div class="dashboard-actions">
-            <button class="action-btn" onclick="openModal(2)">View Dashboard</button>
-          </div>
-        </div>
-      </article>
+<article class="dashboard-card" onclick="openModal(2)" style="cursor:pointer;">
+  <div class="dashboard-preview">
+    <img 
+  src="images\us-retail-sales-dashboard.png" 
+  alt="US Retail Sales Forecasting Dashboard"
+  onclick="openModal(2)"
+>
+  </div>
+  <div class="dashboard-card-content">
+    <h3>US Retail Sales Forecasting &amp; Performance Analysis</h3>
+    <p>
+      This dashboard analyses US retail sales performance across multiple years, combining KPI tracking,
+      regional performance, customer segment breakdowns, and time-series forecasting. It highlights
+      November as the strongest sales month and uses forecasting to support future demand planning.
+    </p>
+    <div class="tags">
+      <span class="tag">Power BI</span>
+      <span class="tag">Forecasting</span>
+      <span class="tag">Sales Analysis</span>
+      <span class="tag">Time Series</span>
+    </div>
+    <div class="dashboard-actions">
+      <button class="action-btn" onclick="openModal(2)">View Dashboard</button>
+    </div>
+  </div>
+</article>
+
+
+<article class="dashboard-card" onclick="openModal(3)" style="cursor:pointer;">
+  <div class="dashboard-preview">
+    <img 
+      src="images/Spotify Global Music Trends & Artist Performance Analysis (2009–2025).png" 
+      alt="Spotify Global Music Trends Dashboard"
+      onclick="event.stopPropagation(); openModal(3)"
+    >
+  </div>
+
+  <div class="dashboard-card-content">
+    <h3>Spotify Global Music Trends & Artist Performance Analysis (2009–2025)</h3>
+    <p>
+      This Power BI dashboard analyses Spotify music data from 2009 to 2025, exploring track popularity,
+      artist performance, follower patterns, album insights, and content trends. It highlights the top artists,
+      most popular tracks, clean versus explicit content, and key comparisons across artist popularity and follower count.
+    </p>
+
+    <div class="tags">
+      <span class="tag">Power BI</span>
+      <span class="tag">Spotify Analysis</span>
+      <span class="tag">Artist Popularity</span>
+      <span class="tag">Music Trends</span>
     </div>
 
+    <div class="dashboard-actions">
+      <button class="action-btn" onclick="event.stopPropagation(); openModal(3)">View Dashboard</button>
+    </div>
+  </div>
+</article>
+
+</article>
     <div class="notes">
-      <strong>How to add screenshots:</strong> place your dashboard images inside an <code>images</code>
-      folder and update the <code>dashboardImages</code> array at the bottom of this page.
-      You can also replace each grey preview area with an actual image preview by swapping the placeholder
-      block for an <code>&lt;img src="images/your-file.png" alt="Dashboard preview"&gt;</code> element.
+        Coming Soon!!
     </div>
   </section>
 
@@ -432,11 +465,15 @@ const dashboardImages = [
   },
   {
     src: "images/Breakdown of most profitable brand and gender.png",
-    caption: "Product Returns Dashboard & Return Trend Analysis"
+    caption: "Profitability & Revenue Performance Overview"
   },
   {
-    src: "images/Sales Performance Dashboard Screenshot.png",
-    caption: "Sales Performance Dashboard"
+    src: "images/us-retail-sales-dashboard.png",
+    caption: "US Retail Sales Forecasting & Performance Analysis"
+  },
+  {
+    src: "images/Spotify Global Music Trends & Artist Performance Analysis (2009–2025).png",
+    caption: "Spotify Global Music Trends & Artist Performance Analysis (2009–2025)"
   }
 ];
 

@@ -39,6 +39,47 @@
     }
   </style>
 </head>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const universe = document.getElementById("universe");
+  if (!universe) return;
+
+  const starCount = 420;
+  const maxTime = 30;
+
+  function createStarfield() {
+    universe.innerHTML = "";
+    const width = universe.offsetWidth || window.innerWidth;
+    const height = universe.offsetHeight || window.innerHeight;
+
+    for (let i = 0; i < starCount; i++) {
+      const ypos = Math.round(Math.random() * height);
+      const star = document.createElement("div");
+      const speed = 1000 * (Math.random() * maxTime + 1);
+      const starClass = "star" + Math.max(0, 3 - Math.floor(speed / 1000 / 8));
+
+      star.className = starClass;
+      universe.appendChild(star);
+
+      star.animate(
+        [
+          { transform: `translate3d(${width}px, ${ypos}px, 0)` },
+          { transform: `translate3d(-${Math.random() * 256}px, ${ypos}px, 0)` }
+        ],
+        {
+          delay: Math.random() * -speed,
+          duration: speed,
+          iterations: Infinity
+        }
+      );
+    }
+  }
+
+  createStarfield();
+  window.addEventListener("resize", createStarfield);
+});
+</script>
 <body>
 
 <nav class="navbar">
@@ -47,16 +88,20 @@
     <a href="cv.html">CV</a>
     <a href="index.html#contact">Contact</a>
     <a href="projects.html">Projects</a>
-    <a href="dashboard.html">Dashboards</a>
+    <a href="day.html">Dashboards</a>
   </div>
 </nav>
 
 <section class="hero cv-hero">
-  <h1>Curriculum Vitae</h1>
-  <div class="cv-link">
-    <a href="https://drive.google.com/file/d/180DtHOr_oMUYJ8iK-vGDKFLEylOxQYTN/view?usp=sharing" target="_blank">
-      Link to my CV
-    </a>
+  <div id="universe" aria-hidden="true"></div>
+
+  <div class="cv-content">
+    <h1>Curriculum Vitae</h1>
+    <div class="cv-link">
+      <a href="https://drive.google.com/file/d/180DtHOr_oMUYJ8iK-vGDKFLEylOxQYTN/view?usp=sharing" target="_blank">
+        Link to my CV
+      </a>
+    </div>
   </div>
 </section>
 
