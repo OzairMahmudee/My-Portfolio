@@ -130,25 +130,29 @@ canvas {
 
 /* CV PAGE */
 
+/* CV PAGE */
+
 .hero.cv-hero {
+  height: 100vh;
   position: relative;
   overflow: hidden;
-  background: #000;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
+    url("images/cv-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
+/* Hide the old moving star background */
 #universe {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-#universe::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  display: none;
 }
 
 .cv-content {
@@ -156,24 +160,42 @@ canvas {
   z-index: 5;
 }
 
-.star0, .star1, .star2, .star3 {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+.hero.cv-hero h1 {
+  margin: 0 0 24px 0;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+
+  background: linear-gradient(90deg, #ffffff, #00bcd4, #4f6df5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 45px rgba(0, 188, 212, 0.35);
 }
 
-.star0 { width: 1px; height: 1px; opacity: 0.5; }
-.star1 { width: 2px; height: 2px; opacity: 0.7; }
-.star2 { width: 3px; height: 3px; opacity: 0.9; }
-.star3 { width: 4px; height: 4px; opacity: 1; }
+.cv-link {
+  margin-top: 25px;
+}
 
-.tech-intro h2,
-.tech-part1 h3,
-.tech-part2 h3,
-.contact h2,
-.end h2 {
-  max-width: 1000px;
+.cv-link a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.75);
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-size: 16px;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.cv-link a:hover {
+  background: #00bcd4;
+  border-color: #00bcd4;
+  color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,188,212,0.25);
 }
 
 
